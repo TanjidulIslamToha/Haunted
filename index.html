@@ -72,21 +72,6 @@
             background: #800000;
         }
 
-        .scary-image {
-            width: 200px;
-            height: auto;
-            animation: shake 0.5s infinite;
-            cursor: pointer;
-        }
-
-        @keyframes shake {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-10px, 10px); }
-            50% { transform: translate(10px, -10px); }
-            75% { transform: translate(-10px, -10px); }
-            100% { transform: translate(10px, 10px); }
-        }
-
         .floating-text {
             position: absolute;
             top: 20%;
@@ -137,6 +122,14 @@
                 opacity: 1;
             }
         }
+
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-10px, 10px); }
+            50% { transform: translate(10px, -10px); }
+            75% { transform: translate(-10px, -10px); }
+            100% { transform: translate(10px, 10px); }
+        }
     </style>
 </head>
 <body>
@@ -155,15 +148,25 @@
     <audio id="screamAudio" src="./assets/scream.mp3"></audio>
 
     <script>
-        function triggerRandomEvent() {
-            const randomActions = [
-                () => changeBackgroundColor(),
-                () => showJumpScare(),
-                () => createFloatingText(),
-            ];
+        let clickCount = 0; // Track the number of clicks
+        const scareThreshold = Math.floor(Math.random() * 10) + 5; // Random number between 5 and 15 clicks
 
-            const randomAction = randomActions[Math.floor(Math.random() * randomActions.length)];
-            randomAction();
+        function triggerRandomEvent() {
+            clickCount++; // Increment the click counter
+
+            if (clickCount >= scareThreshold) {
+                // Trigger jump scare if the threshold is reached
+                showJumpScare();
+            } else {
+                // Trigger other random events
+                const randomActions = [
+                    () => changeBackgroundColor(),
+                    () => createFloatingText(),
+                ];
+
+                const randomAction = randomActions[Math.floor(Math.random() * randomActions.length)];
+                randomAction();
+            }
         }
 
         function changeBackgroundColor() {
@@ -178,6 +181,7 @@
             screamAudio.play(); // Play the scream sound
             setTimeout(() => {
                 jumpscare.style.display = 'none'; // Hide the jump scare
+                clickCount = 0; // Reset the click counter after the scare
             }, 3000); // Jump scare lasts for 3 seconds
         }
 
