@@ -65,7 +65,6 @@
             border-radius: 50px;
             transition: transform 0.3s, background 0.3s;
             box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
-            position: relative;
         }
 
         .button:hover {
@@ -76,17 +75,16 @@
         .scary-image {
             width: 200px;
             height: auto;
-            margin-top: 20px;
-            animation: shake 0.3s infinite;
+            animation: shake 0.5s infinite;
             cursor: pointer;
         }
 
         @keyframes shake {
             0% { transform: translate(0, 0); }
-            25% { transform: translate(-5px, 5px); }
-            50% { transform: translate(5px, -5px); }
-            75% { transform: translate(-5px, -5px); }
-            100% { transform: translate(5px, 5px); }
+            25% { transform: translate(-10px, 10px); }
+            50% { transform: translate(10px, -10px); }
+            75% { transform: translate(-10px, -10px); }
+            100% { transform: translate(10px, 10px); }
         }
 
         .floating-text {
@@ -126,9 +124,9 @@
         }
 
         .jumpscare img {
-            max-width: 100%;
-            max-height: 100%;
-            animation: fadeIn 1s ease-in-out;
+            max-width: 80%;
+            max-height: 80%;
+            animation: shake 0.5s infinite, fadeIn 1s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -145,17 +143,15 @@
     <h1 onclick="triggerRandomEvent()">Welcome to the Haunted Page</h1>
     <p onclick="triggerRandomEvent()">Click if you dare. The shadows are watching. 👁️</p>
     <button class="button" onclick="triggerRandomEvent()">Don’t Click Me</button>
-    <img 
-        class="scary-image" 
-        src="https://i.imgur.com/ZkEUE1N.png" 
-        alt="Scary Face" 
-        onclick="showJumpScare()">
+   
     <div class="floating-text" onclick="triggerRandomEvent()">Turn back now!</div>
 
     <!-- Jump Scare -->
     <div class="jumpscare" id="jumpscare">
-        <img src="https://i.imgur.com/ZXJ3yKk.png" alt="Scary Face">
+        <img src="./assets/bhoot.jpeg" alt="Terrifying Ghost">
     </div>
+
+    <audio id="screamAudio" src="https://www.soundjay.com/button/beep-05.mp3"></audio>
 
     <script>
         function triggerRandomEvent() {
@@ -163,6 +159,7 @@
                 () => changeBackgroundColor(),
                 () => showJumpScare(),
                 () => createFloatingText(),
+                () => makeScarySound(),
             ];
 
             const randomAction = randomActions[Math.floor(Math.random() * randomActions.length)];
@@ -177,19 +174,31 @@
         function showJumpScare() {
             const jumpscare = document.getElementById('jumpscare');
             jumpscare.style.display = 'flex';
+            document.getElementById('screamAudio').play();
             setTimeout(() => {
                 jumpscare.style.display = 'none';
             }, 3000); // Jumpscare lasts 3 seconds
         }
 
         function createFloatingText() {
+            const messages = [
+                "The end is near!",
+                "You can't escape!",
+                "The shadows are watching...",
+                "Don't look behind you...",
+            ];
             const floatingText = document.createElement('div');
-            floatingText.textContent = "Run while you can!";
+            floatingText.textContent = messages[Math.floor(Math.random() * messages.length)];
             floatingText.className = 'floating-text';
             floatingText.style.top = Math.random() * 80 + '%';
             floatingText.style.left = Math.random() * 80 + '%';
             floatingText.onclick = triggerRandomEvent;
             document.body.appendChild(floatingText);
+        }
+
+        function makeScarySound() {
+            const scream = document.getElementById('screamAudio');
+            scream.play();
         }
     </script>
 </body>
