@@ -151,7 +151,8 @@
         <img src="./assets/bhoot.jpeg" alt="Terrifying Ghost">
     </div>
 
-    <audio id="screamAudio" src="https://www.soundjay.com/button/beep-05.mp3"></audio>
+    <!-- Scream Audio -->
+    <audio id="screamAudio" src="./assets/scream.mp3"></audio>
 
     <script>
         function triggerRandomEvent() {
@@ -159,7 +160,6 @@
                 () => changeBackgroundColor(),
                 () => showJumpScare(),
                 () => createFloatingText(),
-                () => makeScarySound(),
             ];
 
             const randomAction = randomActions[Math.floor(Math.random() * randomActions.length)];
@@ -173,11 +173,12 @@
 
         function showJumpScare() {
             const jumpscare = document.getElementById('jumpscare');
-            jumpscare.style.display = 'flex';
-            document.getElementById('screamAudio').play();
+            const screamAudio = document.getElementById('screamAudio');
+            jumpscare.style.display = 'flex'; // Show the jump scare
+            screamAudio.play(); // Play the scream sound
             setTimeout(() => {
-                jumpscare.style.display = 'none';
-            }, 3000); // Jumpscare lasts 3 seconds
+                jumpscare.style.display = 'none'; // Hide the jump scare
+            }, 3000); // Jump scare lasts for 3 seconds
         }
 
         function createFloatingText() {
@@ -194,11 +195,6 @@
             floatingText.style.left = Math.random() * 80 + '%';
             floatingText.onclick = triggerRandomEvent;
             document.body.appendChild(floatingText);
-        }
-
-        function makeScarySound() {
-            const scream = document.getElementById('screamAudio');
-            scream.play();
         }
     </script>
 </body>
