@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haunted Suspicion</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/halloween.jpg" type="image/jpeg">
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Haunted Suspicion">
+    <meta property="og:description" content="Enter if you dare. Experience the suspense of the haunted page.">
+    <meta property="og:image" content="./assets/halloween.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Haunted Suspicion">
+    <meta name="twitter:description" content="Enter if you dare. Experience the suspense of the haunted page.">
+    <meta name="twitter:image" content="./assets/halloween.jpg">
+
+
+
+
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haunted Suspicion</title>
@@ -30,9 +59,12 @@
         }
 
         @keyframes flicker {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
@@ -47,9 +79,12 @@
         }
 
         @keyframes textFade {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.3;
             }
@@ -87,9 +122,12 @@
         }
 
         @keyframes floatText {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -118,25 +156,41 @@
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
         }
 
         @keyframes shake {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-10px, 10px); }
-            50% { transform: translate(10px, -10px); }
-            75% { transform: translate(-10px, -10px); }
-            100% { transform: translate(10px, 10px); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-10px, 10px);
+            }
+
+            50% {
+                transform: translate(10px, -10px);
+            }
+
+            75% {
+                transform: translate(-10px, -10px);
+            }
+
+            100% {
+                transform: translate(10px, 10px);
+            }
         }
     </style>
 </head>
+
 <body>
     <h1 onclick="triggerRandomEvent()">Welcome to the Haunted Page</h1>
     <p onclick="triggerRandomEvent()">Click if you dare. The shadows are watching. 👁️</p>
     <button class="button" onclick="triggerRandomEvent()">Don’t Click Me</button>
-   
+
     <div class="floating-text" onclick="triggerRandomEvent()">Turn back now!</div>
 
     <!-- Jump Scare -->
@@ -202,4 +256,5 @@
         }
     </script>
 </body>
+
 </html>
